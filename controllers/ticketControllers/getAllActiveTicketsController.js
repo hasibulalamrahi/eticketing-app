@@ -6,11 +6,6 @@ exports.getAllActiveTickets = async(req,res) =>{
     const getAllActiveTicketInfo = await newTicket
       .findAll(
         {
-          where: {
-            isActive: true,
-          },
-        },
-        {
           attributes: [
             "id",
             "from",
@@ -24,6 +19,9 @@ exports.getAllActiveTickets = async(req,res) =>{
             "fare",
             "postedBy",
           ],
+          where: {
+            isActive: true,
+          }
         }
       )
       .catch((err) => {
