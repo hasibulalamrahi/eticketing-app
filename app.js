@@ -20,6 +20,7 @@ const userSignUp = require("./routes/authentication/signUp")
 const userSignIn = require('./routes/authentication/signin')
 const newTicket = require('./routes/tickets/newTicket')
 const allActiveTickets = require('./routes/tickets/getAllActiveTickets')
+const getTicketById = require('./routes/tickets/getTicketById')
 
 const app = express();
 app.use(express.json())
@@ -38,6 +39,7 @@ app.use(helmet());
 app.use('/sign-up',userSignUp)
 app.use('/sign-in',userSignIn)
 app.use('/new-ticket',passport.authenticate("jwt",{session: false}),newTicket)
-app.use("/get-all-active-tickets", allActiveTickets);
+app.use("/get-tickets", allActiveTickets);
+app.use("/get-ticket", getTicketById);
 
 module.exports = app;
