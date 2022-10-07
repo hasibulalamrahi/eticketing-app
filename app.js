@@ -40,6 +40,6 @@ app.use('/sign-up',userSignUp)
 app.use('/sign-in',userSignIn)
 app.use('/new-ticket',passport.authenticate("jwt",{session: false}),newTicket)
 app.use("/get-tickets", allActiveTickets);
-app.use("/get-ticket", getTicketById);
+app.use("/get-ticket",passport.authenticate("jwt",{session: false}), getTicketById);
 
 module.exports = app;
