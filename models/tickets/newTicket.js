@@ -44,9 +44,15 @@ const newTicket = sequelize.define("newTicket", {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  isActive: {
+    type: DataTypes.BOOLEAN,
+    enum: [true, false],
+    allowNull: false,
+    defaultValue: true,
+  },
   postedBy: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
   },
 });
 
