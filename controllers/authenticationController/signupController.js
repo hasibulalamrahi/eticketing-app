@@ -8,7 +8,7 @@ exports.userSignupController = async(req,res)=>{
         console.log("Error Occured in SignUp Validation", err);
       });
     if (alreadyUserExist){
-        return res.json({message: "User Already Exists"})
+        return res.status(404).json({ message: "User Already Exists" });
     }
     const newUser = new userSignup({
       fullName,
@@ -19,10 +19,12 @@ exports.userSignupController = async(req,res)=>{
     });
     const saveNewUser = await newUser.save().catch((err)=>{
         console.log("Error Occured in Saving User Info",err)
-        res.json({message: "Some Error Occured while user signup"})
+        res.status(500).json({
+          message: "Some Error Occured while user signup",
+        });
     })
     if (saveNewUser){
-        res.json({ message: "Thanks for Signup" });
+        res.status(200).json({ message: "Thanks for Signup" });
     }
       
 }
