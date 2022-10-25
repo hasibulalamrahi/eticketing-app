@@ -10,15 +10,15 @@ exports.userSignInController = async(req,res) =>{
      });
    
    if (!userExist){
-     return res.json({message: "Invalid user , Please Sign Up"})
+     return res.status(404).json({ message: "Invalid user , Please Sign Up" });
    }
    if (userExist.password =! password) {
-     return res.json({
-        message: "Email Or Password is required"
-     })
+     return res.status(404).json({
+       message: "Email Or Password is required",
+     });
 
    }
    const jwtToken = jwt.sign({ id: userExist.id, email: userExist.email },process.env.JWT_SECRET_TOKEN);
-   res.json({ message: "Login Successful", token: jwtToken });
+   res.status(200).json({ message: "Login Successful", token: jwtToken });
 
 }

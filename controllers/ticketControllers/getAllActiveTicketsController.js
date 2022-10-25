@@ -28,5 +28,5 @@ exports.getAllActiveTickets = async(req,res) =>{
         console.log("Some Error Occured in Saving Ticket", err);
         res.json({ message: "Some Problems Occured in Creating New Ticket" });
       });
-    res.send({ availableTickets: getAllActiveTicketInfo });
+    res.status(200).send({ availableTickets: getAllActiveTicketInfo });
 }
